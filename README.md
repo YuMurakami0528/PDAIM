@@ -41,7 +41,7 @@ Represent knowledge and information as particles with states. Let S be the state
 
 T = [P(s_i → s_j)] for all i, j in the state space.
 
-# Quantum Mechanics
+## Quantum Mechanics
 
 Use the principles of quantum mechanics to model high-dimensional relationships and dependencies. Each particle state s ∈ S can be represented as a quantum state vector |s⟩ in a complex Hilbert space H. The superposition principle allows for a linear combination of states:
 
@@ -71,41 +71,41 @@ This example shows a basic implementation of the Particle Diffusion AI Model in 
 
 `import solve_ivp`
 
-# Define constants
+## Define constants
 
 `hbar = 1  # Set the reduced Planck constant to 1 for simplicity`
 
-# Define the state space
+## Define the state space
 `num_states = 4`
 
 `state_labels = [f's{i}' for i in range(num_states)]`
 
-# Initialize state coefficients
+## Initialize state coefficients
 `coeffs = np.random.rand(num_states) + 1j * np.random.rand(num_states)`
 `coeffs /= np.linalg.norm(coeffs)`
 
-# Define the time-dependent Hamiltonian
+## Define the time-dependent Hamiltonian
 `def hamiltonian(t):
     H = np.random.rand(num_states, num_states)
     H = (H + H.T) / 2  # Make the matrix Hermitian
     return H`
 
-# Define the time evolution of the quantum state according to the Schrödinger equation
+## Define the time evolution of the quantum state according to the Schrödinger equation
 `def time_evolution(t, psi):
     H = hamiltonian(t)
     return -1j * (H @ psi) / hbar`
 
-# Define the initial state
+## Define the initial state
 `psi0 = coeffs`
 
-# Set the time range for the simulation
+## Set the time range for the simulation
 `t_span = (0, 10)`
 
 `t_eval = np.linspace(t_span[0], t_span[1], 100)`
 
-# Solve the Schrödinger equation
+## Solve the Schrödinger equation
 `sol = solve_ivp(time_evolution, t_span, psi0, t_eval=t_eval, method='RK45')`
 
-# Print the final state
+## Print the final state
 `print(f'Initial state: {psi0}')`
 `print(f'Final state: {sol.y[:, -1]}')`
